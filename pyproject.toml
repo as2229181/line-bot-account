@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "linebot"
+version = "0.1.0"
+description = ""
+authors = ["EricKuo <eric.kuo@neualgo.co>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "3.10.13"
+flask = "^3.1.0"
+pydantic = "^2.10.6"
+gunicorn = "^23.0.0"
+line-bot-sdk = "^3.16.0"
+flask-cors = "^5.0.1"
+flask-compress = "^1.17"
+rejson = "^0.5.6"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
