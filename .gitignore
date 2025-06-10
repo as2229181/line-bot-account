@@ -24,3 +24,6 @@ migrations/
 **/tmp.*
 **/tmp
 **/*.tmp
+
+# file 
+/client_secret*

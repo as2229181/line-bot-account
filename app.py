@@ -1,7 +1,9 @@
-
 from flask import Flask
 from flask_compress import Compress
 from flask_cors import CORS
+
+from config import Config
+from services.linebot_service import LineBotService
 
 app = Flask(__name__)
 
@@ -13,6 +15,11 @@ def _init_service():
     """
     init linebot service
     """
+    linebot_service = LineBotService(
+        access_token=Config.LINEBOT_ACCESS_TOKEN,
+        secret=Config.LINBOT_SECRET,
+    )
+    setattr(app, "linebot_service", linebot_service)
 
 
 def _init_database():

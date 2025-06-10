@@ -23,6 +23,11 @@ class Settings(BaseSettings):
     LINEBOT_SECRET: str
     LINEBOT_ACCESS_TOKEN: str
 
+    # Google Sheet
+    GOOGLE_AUTHORIZE_TOKEN: str
+    GOOGLE_SHEET_URL_ROOT: str
+    GOOGLE_SHEET_ID: str
+
 
 class Testing(Settings):
     TESTING = True
@@ -30,8 +35,8 @@ class Testing(Settings):
 
 
 def get_setting():
-    stage = os.getenv('STAGE')
-    if stage == 'dev':
+    stage = os.getenv("STAGE")
+    if stage == "dev":
         return Testing
     return Settings
 
