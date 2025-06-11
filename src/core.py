@@ -11,7 +11,7 @@ def _init_service(app):
     """
     linebot_service = LineBotService(
         access_token=Config.LINEBOT_ACCESS_TOKEN,
-        secret=Config.LINBOT_SECRET,
+        secret=Config.LINEBOT_SECRET,
     )
     setattr(app, 'linebot_service', linebot_service)
 

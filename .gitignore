@@ -25,5 +25,5 @@ migrations/
 **/tmp
 **/*.tmp
 
-# file 
+# file
 secrets/credential*

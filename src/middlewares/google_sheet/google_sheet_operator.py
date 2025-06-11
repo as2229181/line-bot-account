@@ -4,7 +4,7 @@ from common.exception import ExternalError
 
 class _GoogleSheet:
     _TOKEN = Config.GOOGLE_AUTHORIZE_TOKEN
-    _SHEET_ID = Config.GOOGLE_ID
+    _SHEET_ID = Config.GOOGLE_SHEET_ID
 
     def __init__(self):
         self._spreadsheet = self._auth().open_by_key(self._SHEET_ID)
@@ -48,17 +48,13 @@ class GoogleSheetOperator:
         return:
             pygsheets.worksheet
         """
-        sheet = self.get_worksheet(name)
-        if sheet:
-            msg = f'sheet: {name} is not exist'
-            raise ExternalError(message=msg)
         new_worksheet = self._spreadsheet.add_worksheet(
             name, 
             rows=rows, 
             cols=columns
         )
         return new_worksheet
-    
+
     def set_column_name(self, worksheet: pygsheets.Worksheet, column_name: list[str]):
         column_len = len(column_name)
         if column_len > worksheet.cols:

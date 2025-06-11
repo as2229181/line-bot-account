@@ -1,10 +1,7 @@
-from linebot.models import UnfollowEvent
-from linebot.models.events import Unsend
-from common import const_base
 from common.const_base import ConstBase
 
 
-class EventType(const_base):
+class EventType(ConstBase):
     MESSAGE = "message"
     UNSEND = "unsend"
     FLOLLOW = "flollow"
