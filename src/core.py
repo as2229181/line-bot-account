@@ -1,17 +1,11 @@
-from flask import Flask
 from flask_compress import Compress
 from flask_cors import CORS
 
 from config import Config
 from services.linebot_service import LineBotService
 
-app = Flask(__name__)
 
-CORS(app, send_wildcard=True)
-Compress(app)
-
-
-def _init_service():
+def _init_service(app):
     """
     init linebot service
     """
@@ -19,7 +13,7 @@ def _init_service():
         access_token=Config.LINEBOT_ACCESS_TOKEN,
         secret=Config.LINBOT_SECRET,
     )
-    setattr(app, "linebot_service", linebot_service)
+    setattr(app, 'linebot_service', linebot_service)
 
 
 def _init_database():
@@ -34,16 +28,19 @@ def _init_log():
     """
 
 
-def _register_controller():
+def _register_controller(app):
     """
     register controller
     """
+    from controllers.linebot_routes import line_bot_bp
+    app.register_blueprint(line_bot_bp, url_prefix='/line-bot')
 
 
-def create_app():
-    app.config.from_object(Config)
-    _init_service()
+def create_app(app):
+    CORS(app, send_wildcard=True)
+    Compress(app)
+    _init_service(app)
     _init_database()
     _init_log()
-    _register_controller()
+    _register_controller(app)
     return app

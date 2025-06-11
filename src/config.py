@@ -1,5 +1,5 @@
 import os
-from pydantic import BaseSettings
+from pydantic_settings import BaseSettings
 
 
 class Settings(BaseSettings):
@@ -30,8 +30,8 @@ class Settings(BaseSettings):
 
 
 class Testing(Settings):
-    TESTING = True
-    DEBUG = True
+    TESTING: bool = True
+    DEBUG: bool = True
 
 
 def get_setting():
