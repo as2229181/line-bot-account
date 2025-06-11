@@ -1,0 +1,28 @@
+x-app-info: &app-info
+  build:
+    context: .
+    dockerfile: Dockerfile
+  env_file: .env
+  networks:
+    - proxy
+  tty: true
+  init: true
+
+services:
+  app:
+    <<: *app-info
+    container_name: "${APP_NAME}"
+    ports:
+      - "${APP_EXPOSE_PORT}:2000"
+    volumes:
+      - "./src:/app"
+    restart: always
+    command: 'python main.py'
+    tty: false
+    logging:
+      options:
+        max-size: 50m
+        max-file: '10'
+networks:
+  proxy:
+    name: "${APP_NETWORK}"
