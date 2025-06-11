@@ -16,6 +16,7 @@ services:
       - "${APP_EXPOSE_PORT}:5555"
     volumes:
       - "./src:/app"
+      - "./secrets:/app/secrets"
     restart: always
     command: 'python main.py'
     tty: false

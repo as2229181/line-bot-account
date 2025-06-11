@@ -23,7 +23,7 @@ class Settings(BaseSettings):
 
     # Google Sheet
     GOOGLE_CLIENT_SECRET_FILE_PATH: str
-    GOOGLE_SHEET_ID: str
+    GOOGLE_SHEET_URL: str
 
 
 class Testing(Settings):

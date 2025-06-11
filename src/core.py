@@ -36,11 +36,18 @@ def _register_controller(app):
     app.register_blueprint(line_bot_bp, url_prefix='/line-bot')
 
 
-def create_app(app):
-    CORS(app, send_wildcard=True)
-    Compress(app)
-    _init_service(app)
+def _register_prob(app):
+    @app.route('/probe', methods=['GET'])
+    def probe():
+        return 'ok'
+
+
+def create_app(_app):
+    CORS(_app, send_wildcard=True)
+    Compress(_app)
+    _init_service(_app)
     _init_database()
     _init_log()
-    _register_controller(app)
-    return app
+    _register_controller(_app)
+    _register_prob(_app)
+    return _app
