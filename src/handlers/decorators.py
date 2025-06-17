@@ -1,5 +1,7 @@
 from functools import wraps
+
 from flask import request
+
 from common.exception import ValidationError
 
 

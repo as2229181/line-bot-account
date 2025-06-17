@@ -1,6 +1,8 @@
-from flask import request
-from common.exception import ValidationError
 import base64
+
+from flask import request
+
+from common.exception import ValidationError
 
 
 class HeaderGetter:

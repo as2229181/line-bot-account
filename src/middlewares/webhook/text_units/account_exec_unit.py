@@ -1,13 +1,14 @@
-from common.exception import ValidationError
-from common.error_code import ErrorCode
-from consts.linebot_const import TextJobType
 from datetime import datetime
+
+from common.error_code import ErrorCode
+from common.exception import ValidationError
+from consts.linebot_const import TextJobType
 from middlewares.google_sheet.google_sheet_operator import GoogleSheetOperator
 
 
 class AccountExecUnit:
     def __init__(self, text):
-        self._text = text
+        self._text = self._process_text(text)
         self._title = self._get_title()
         self._sheet_operator = GoogleSheetOperator(self._title)
 
@@ -16,6 +17,17 @@ class AccountExecUnit:
         cur = datetime.now()
         cur_year, cur_month = cur.year, cur.month
         return f'{cur_year}-{cur_month:02d}'
+
+    def _process_text(self, text):
+        """
+        Origin text would be like:
+        "account 2025/06/17 170 dinner "
+        :param text:
+        :return:
+        """
+
+        text = text.split()
+        return text
 
     def _validate_text(self):
         text = self._text

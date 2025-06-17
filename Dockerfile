@@ -37,4 +37,3 @@ RUN alias la="ls -A"
 RUN alias l="ls -CF"
 
 RUN echo 'alias run="python main.py line_bot"' >> /root/.bashrc
-

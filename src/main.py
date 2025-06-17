@@ -1,5 +1,6 @@
 from app import app
 from core import create_app
+
 app = create_app(app)
 
 if __name__ == '__main__':

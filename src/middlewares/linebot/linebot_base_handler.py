@@ -5,4 +5,3 @@ class LineBotBaseHandler:
 
     def register(self):
         raise NotImplementedError
-

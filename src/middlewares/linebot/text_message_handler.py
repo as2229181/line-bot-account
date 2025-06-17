@@ -1,5 +1,5 @@
-from middlewares.linebot.linebot_base_handler import LineBotBaseHandler
 from linebot.models import MessageEvent, TextMessage
+from middlewares.linebot.linebot_base_handler import LineBotBaseHandler
 from middlewares.webhook.text_units.account_exec_unit import AccountExecUnit
 
 

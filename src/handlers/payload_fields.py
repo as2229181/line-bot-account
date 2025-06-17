@@ -1,4 +1,5 @@
 from schema import And, Optional, Schema
+
 from handlers.schema_validator import SchemaValidator
 
 _ALLOW_TYPE = ["text", "image", "video", "audio", "location", "sticker"]

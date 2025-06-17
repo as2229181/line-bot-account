@@ -1,6 +1,7 @@
 import pygsheets
-from config import Config
+
 from common.exception import ExternalError
+from config import Config
 from consts.linebot_const import WorkSheetsColumnName
 
 
@@ -43,21 +44,14 @@ class GoogleSheetOperator:
         return 'ok'
 
     def create_worksheet(self, name: str, rows: int = 100, columns=26) -> pygsheets.Worksheet:
-        new_worksheet = self._spreadsheet.add_worksheet(
-            title=name,
-            rows=rows,
-            cols=columns
-        )
+        new_worksheet = self._spreadsheet.add_worksheet(title=name, rows=rows, cols=columns)
         return new_worksheet
 
     def set_column_names(
-            self,
+        self,
     ):
         sheet = self._worksheet
-        first_row = sheet.get_row(
-            1,
-            include_tailing_empty=False
-        )
+        first_row = sheet.get_row(1, include_tailing_empty=False)
         if any(val.strip() for val in first_row):
             return
 

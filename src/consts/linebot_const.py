@@ -25,11 +25,13 @@ class TextJobType:
 
 
 class WorkSheetsColumnName(ConstBase):
-    UUID = 'uuid'                      # 唯一識別碼
-    DATE = 'date'                      # 交易日期
-    AMOUNT = 'amount'                  # 交易金額（正數或負數）
-    DESCRIPTION = 'description'        # 備註／摘要
-    BALANCE = 'balance'                # 結餘（使用公式計算）
-    USER = 'user'                # 記帳人識別
-    CREATED_AT = 'created_at'          # 建立時間
-    UPDATED_AT = 'updated_at'          # 最後更新時間
+    UUID = 'uuid'  # 唯一識別碼
+    USER = 'user'  # 記帳人識別
+    DATE = 'date'  # 交易日期
+    AMOUNT = 'amount'  # 交易金額（正數或負數）
+    DESCRIPTION = 'description'  # 備註／摘要
+    PAID_BY = 'paid_by'  # 付款人
+    FROM_WHOM = 'from_whom'  # 為誰付錢
+    BALANCE = 'balance'  # 結餘（使用公式計算）
+    CREATED_AT = 'created_at'  # 建立時間
+    UPDATED_AT = 'updated_at'  # 最後更新時間

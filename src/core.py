@@ -33,6 +33,7 @@ def _register_controller(app):
     register controller
     """
     from controllers.linebot_routes import line_bot_bp
+
     app.register_blueprint(line_bot_bp, url_prefix='/line-bot')
 
 

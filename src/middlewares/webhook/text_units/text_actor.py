@@ -1,7 +1,7 @@
-from middlewares.webhook.text_units.account_exec_unit import AccountExecUnit
-from consts.linebot_const import TextJobType
-from common.exception import ValidationError
 from common.error_code import ErrorCode
+from common.exception import ValidationError
+from consts.linebot_const import TextJobType
+from middlewares.webhook.text_units.account_exec_unit import AccountExecUnit
 
 
 class TextActor:

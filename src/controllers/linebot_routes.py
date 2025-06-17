@@ -1,7 +1,7 @@
 from flask import Blueprint
-from handlers.payload_fields import PayloadFields
-from handlers.header_getter import HeaderGetter
+
 from handlers.decorators import payload_check
+from handlers.payload_fields import PayloadFields
 
 line_bot_bp = Blueprint('line_bot', __name__)
 

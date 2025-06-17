@@ -1,5 +1,3 @@
-
-
 class ConstBase:
     """
     base class for const
@@ -19,10 +17,10 @@ class ConstBase:
     _DEFAULT_DELMITER = "_"
     _DEFAULT_FORMAT = "lower"
 
-    _KEY_TO_VALUE_DICT = {}
-    _VALUE_TO_KEY_DICT = {}
-    _KEYS = list()
-    _VALUES = list()
+    _KEY_TO_VALUE_DICT: dict = {}
+    _VALUE_TO_KEY_DICT: dict = {}
+    _KEYS: list = []
+    _VALUES: list = []
 
     @classmethod
     def get_values(cls):
