@@ -26,4 +26,4 @@ migrations/
 **/*.tmp
 
 # file 
-/client_secret*
+secrets/credential*

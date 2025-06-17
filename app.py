@@ -41,6 +41,7 @@ def _register_controller():
 
 
 def create_app():
+    app.config.from_object(Config)
     _init_service()
     _init_database()
     _init_log()
