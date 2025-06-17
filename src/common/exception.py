@@ -1,4 +1,3 @@
-from common import error_code
 from common.error_code import ErrorCode
 
 

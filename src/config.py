@@ -1,5 +1,6 @@
 import os
-from pydantic import BaseSettings
+
+from pydantic_settings import BaseSettings
 
 
 class Settings(BaseSettings):
@@ -14,8 +15,6 @@ class Settings(BaseSettings):
     APP_VERSION: str
     # 產品環境
     STAGE: str
-    # 服務器密鑰
-    APP_SECRET: str
 
     # ---Service--- #
 
@@ -24,21 +23,20 @@ class Settings(BaseSettings):
     LINEBOT_ACCESS_TOKEN: str
 
     # Google Sheet
-    GOOGLE_AUTHORIZE_TOKEN: str
-    GOOGLE_SHEET_URL_ROOT: str
-    GOOGLE_SHEET_ID: str
+    GOOGLE_CLIENT_SECRET_FILE_PATH: str
+    GOOGLE_SHEET_URL: str
 
 
 class Testing(Settings):
-    TESTING = True
-    DEBUG = True
+    TESTING: bool = True
+    DEBUG: bool = True
 
 
 def get_setting():
     stage = os.getenv("STAGE")
     if stage == "dev":
-        return Testing
-    return Settings
+        return Testing()
+    return Settings()
 
 
 Config = get_setting()
