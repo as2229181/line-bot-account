@@ -2,10 +2,19 @@ x-app-info: &app-info
   build:
     context: .
     dockerfile: Dockerfile
-  env_file: .env
   networks:
     - proxy
   tty: true
+  init: true
+
+x-service-info: &service-info
+  restart: always
+  networks:
+    - proxy
+  logging:
+    options:
+      max-size: 50m
+      max-file: '10'
   init: true
 
 services:
@@ -24,6 +33,19 @@ services:
       options:
         max-size: 50m
         max-file: '10'
+  postgres:
+    <<: *service-info
+    image: "${POSTGRES_IMAGE}"
+    container_name: "${POSTGRES_CONTAINER_NAME}"
+    ports:
+      - "${APP_EXPOSE_PORT}:5432"
+    volumes:
+      - "${DB_PATH}/postgres:/var/lib/postgresql/data"
+    environment:
+      POSTGRES_USER: "${POSTGRES_ADMIN}"
+      POSTGRES_PASSWORD: "${POSTGRES_ADMIN_PASS}"
+      POSTGRES_DB: "${DB_NAME}"
+
 networks:
   proxy:
-    name: "${APP_NETWORK}"
+    name: "${DB_NAME}"
