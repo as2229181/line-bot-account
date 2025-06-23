@@ -29,9 +29,6 @@ RUN echo "set hls" >> /etc/vim/vimrc
 RUN /bin/sh -c echo 'alias python="python3"' >> /root/.bashrc
 RUN /bin/sh -c echo 'alias pip="python3 -m pip"' >> /root/.bashrc
 
-RUN pip install --upgrade pip
-RUN pip --no-cache-dir install -r requirements.txt
-
 # alias
 RUN alias la="ls -A"
 RUN alias l="ls -CF"
