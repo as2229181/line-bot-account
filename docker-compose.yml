@@ -2,11 +2,11 @@ x-app-info: &app-info
   build:
     context: .
     dockerfile: Dockerfile
+  env_file: "${ENV}"
   networks:
     - proxy
   tty: true
   init: true
-
 x-service-info: &service-info
   restart: always
   networks:

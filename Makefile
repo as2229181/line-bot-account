@@ -7,11 +7,19 @@ ENV ?= .env
 
 # 讀取 .env 檔並 export 所有變數
 include $(ENV)
+export ENV
 export $(shell sed 's/=.*//' $(ENV))
 
 CONTAINER_NAME := linebot-db
 
 .PHONY: all
+up-app:
+	@echo "up app service"
+	@docker compose --env-file $(ENV) up app -d
+
+down-app:
+	@echo "down app service"
+	@docker compose --env-file $(ENV) down app
 
 up-postgres:
 	@echo "up PostgreSQL $(POSTGRES_CONTAINER_NAME)"
