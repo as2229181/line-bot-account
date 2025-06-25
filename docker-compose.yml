@@ -38,7 +38,7 @@ services:
     image: "${POSTGRES_IMAGE}"
     container_name: "${POSTGRES_CONTAINER_NAME}"
     ports:
-      - "${APP_EXPOSE_PORT}:5432"
+      - "${POSTGRES_EXPOSE_PORT}:${POSTGRES_PORT}"
     volumes:
       - "${DB_PATH}/postgres:/var/lib/postgresql/data"
     environment:
