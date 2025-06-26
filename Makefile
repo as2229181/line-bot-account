@@ -30,7 +30,7 @@ down-postgres:
 	@docker compose --env-file $(ENV) down postgres
 
 init-db-path:
-	@echo "Start to init db..."
+	@echo "Start to init db path..."
 	@if [ -d $(DB_PATH)/postgres ]; then \
 	echo "$(DB_PATH)/postgres already exist"; \
 	else \
@@ -44,3 +44,7 @@ create-db-user: up-postgres
 		  exit 1; \
 		fi
 	@bash $(PROJECT_SCRIPT_PATH)/create_user.sh
+
+init-db:
+	@echo "初始化資料庫遷移檔案..."
+	docker-compose run --rm app_build flask db init

@@ -33,6 +33,20 @@ services:
       options:
         max-size: 50m
         max-file: '10'
+  app_build:
+    <<: *app-info
+    container_name: "${APP_NAME}_build"
+    volumes:
+      - "${PROJECT_PATH}:${APP_ROOT}"
+      - "${PROJECT_SECRET_PATH}:${APP_SECRET_PATH}"
+    restart: always
+    environment:
+      - FLASK_APP=flasky.py
+    tty: false
+    logging:
+      options:
+        max-size: 50m
+        max-file: '10'
   postgres:
     <<: *service-info
     image: "${POSTGRES_IMAGE}"
