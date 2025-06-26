@@ -26,6 +26,13 @@ class Settings(BaseSettings):
     GOOGLE_CLIENT_SECRET_FILE_PATH: str
     GOOGLE_SHEET_URL: str
 
+    # ---Postgresql--- #
+    POSTGRES_HOST: str
+    POSTGRES_PORT: str
+    POSTGRES_USER: str
+    POSTGRES_USER_PASS: str
+    DB_NAME: str
+
 
 class Testing(Settings):
     TESTING: bool = True

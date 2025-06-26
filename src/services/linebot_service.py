@@ -1,5 +1,6 @@
-from consts.linebot_const import MessageType
 from linebot import LineBotApi, WebhookHandler
+
+from consts.linebot_const import MessageType
 from middlewares.linebot.text_message_handler import TextMessageHandler
 
 

@@ -3,7 +3,8 @@ LABEL maintainer="Eric Kuo <as2229181@gmailc.om>"
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends vim \
-      gcc \
+    libpq-dev \
+    gcc \
     && rm -rf /var/lib/apt/lists/*
 
 # Env
