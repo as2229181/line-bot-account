@@ -29,6 +29,10 @@ down-postgres:
 	@echo "dwon PostgreSQL $(POSTGRES_CONTAINER_NAME)"
 	@docker compose --env-file $(ENV) down postgres
 
+postgres-shell:
+	@echo "enter PostgreSQL $(POSTGRES_CONTAINER_NAME) bash shell"
+	@docker compose exec -it postgres bash
+
 init-db-path:
 	@echo "Start to init db path..."
 	@if [ -d $(DB_PATH)/postgres ]; then \
@@ -48,3 +52,5 @@ create-db-user: up-postgres
 init-db:
 	@echo "初始化資料庫遷移檔案..."
 	docker-compose run --rm app_build flask db init
+	docker-compose run --rm app_build flask db migrate
+	docker-compose run --rm app_build flask db upgrade
