@@ -5,7 +5,7 @@ from sqlalchemy.dialects.postgresql import UUID
 from database import db
 
 
-class ClearedSpilt(db.Model):
+class ClearedSplit(db.Model):
     __tablename__ = 'cleared_splits'
 
     id = db.Column(db.Integer, primary_key=True)
