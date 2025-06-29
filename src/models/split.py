@@ -5,8 +5,8 @@ from sqlalchemy.dialects.postgresql import UUID
 from database import db
 
 
-class Spilt(db.Model):
-    __tablename__ = 'spilts'
+class Split(db.Model):
+    __tablename__ = 'splits'
 
     id = db.Column(db.Integer, primary_key=True)
     uuid = db.Column(UUID(as_uuid=True), unique=True, nullable=False)

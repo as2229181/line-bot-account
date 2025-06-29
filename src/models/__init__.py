@@ -1,11 +1,11 @@
-from .cleared_spilt import ClearedSpilt
+from .cleared_split import ClearedSplit
 from .payment import Payment
-from .split import Spilt
+from .split import Split
 from .user import User
 
 print(
     f' loading model {User.__tablename__}'
-    f'loading model {ClearedSpilt.__tablename__}'
+    f'loading model {ClearedSplit.__tablename__}'
     f'loading model {Payment.__tablename__}'
-    f'loading model {Spilt.__tablename__}'
+    f'loading model {Split.__tablename__}'
 )
