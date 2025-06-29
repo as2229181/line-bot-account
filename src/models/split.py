@@ -14,6 +14,7 @@ class Split(db.Model):
     debtor_uuid = db.Column(UUID(as_uuid=True), db.ForeignKey("users.uuid"))
 
     amount = db.Column(db.Integer, nullable=False)
+    is_paid = db.Column(db.Boolean, nullable=False, default=0)
 
     deleted_datetime = db.Column(db.DateTime)
     updated_datetime = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)

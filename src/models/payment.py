@@ -2,6 +2,7 @@ from datetime import datetime
 
 from sqlalchemy.dialects.postgresql import UUID
 
+from consts.linebot_const import PaymentType
 from database import db
 
 
@@ -13,6 +14,7 @@ class Payment(db.Model):
     payer_uuid = db.Column(UUID(as_uuid=True), db.ForeignKey("users.uuid"))
 
     amount = db.Column(db.Integer, nullable=False)
+    type = db.Column(db.Integer, nullable=False, default=PaymentType.SPLIT)
 
     category = db.Column(db.String(80))
     description = db.Column(db.Text)
