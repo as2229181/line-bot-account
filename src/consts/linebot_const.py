@@ -24,6 +24,11 @@ class TextJobType:
     ACCOUNT = "account"
 
 
+class PaymentType(ConstBase):
+    SPLIT = 1
+    ADVANCED = 2
+
+
 class WorkSheetsColumnName(ConstBase):
     UUID = 'uuid'  # 唯一識別碼
     USER = 'user'  # 記帳人識別

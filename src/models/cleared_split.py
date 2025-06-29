@@ -13,5 +13,6 @@ class ClearedSplit(db.Model):
 
     from_whom_uuid = db.Column(UUID(as_uuid=True), db.ForeignKey("users.uuid"))
     to_whom_uuid = db.Column(UUID(as_uuid=True), db.ForeignKey("users.uuid"))
+    amount = db.Column(db.Integer, nullable=False)
 
     created_datetime = db.Column(db.DateTime, default=datetime.now)
