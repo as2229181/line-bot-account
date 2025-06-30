@@ -33,6 +33,11 @@ class Settings(BaseSettings):
     POSTGRES_USER_PASS: str
     DB_NAME: str
 
+    # ---Redis--- #
+    REDIS_HOST: str
+    REDIS_PORT: int
+    ACCOUNT_DB_NUM: int
+
 
 class Testing(Settings):
     TESTING: bool = True
