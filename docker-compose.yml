@@ -59,7 +59,16 @@ services:
       POSTGRES_USER: "${POSTGRES_ADMIN}"
       POSTGRES_PASSWORD: "${POSTGRES_ADMIN_PASS}"
       POSTGRES_DB: "${DB_NAME}"
-
+  redis:
+    <<: *service-info
+    image: "${REDIS_IMAGE}"
+    container_name: "${REDIS_CONTAINER_NAME}"
+    ports:
+      - "${REDIS_EXPOSE_PORT}:${REDIS_PORT}"
+    command: redis-server /usr/local/etc/redis/redis.conf
+    volumes:
+      - "${DB_PATH}/redis:/data"
+      - "${PROJECT_CONFIG_PATH}/redis:/usr/local/etc/redis"
 networks:
   proxy:
-    name: "${DB_NAME}"
+    name: "${SYSTEM_NAME}"

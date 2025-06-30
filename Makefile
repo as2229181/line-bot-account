@@ -33,6 +33,18 @@ postgres-shell:
 	@echo "enter PostgreSQL $(POSTGRES_CONTAINER_NAME) bash shell"
 	@docker compose exec -it postgres bash
 
+up-redis:
+	@echo "up redis $(REDIS_CONTAINER_NAME)"
+	@docker compose --env-file $(ENV) up redis -d
+
+down-redis:
+	@echo "down redis $(REDIS_CONTAINER_NAME)"
+	@docker compose --env-file $(ENV) down redis
+
+redis-shell:
+	@echo "enter redis $(REDIS_CONTAINER_NAME) bash shell"
+	@docker compose exec -it redis bash
+
 init-db-path:
 	@echo "Start to init db path..."
 	@if [ -d $(DB_PATH)/postgres ]; then \
@@ -40,6 +52,8 @@ init-db-path:
 	else \
 	    echo "create $(DB_PATH)/postgres"; \
 	    mkdir -p $(DB_PATH)/postgres; \
+	    echo "create $(DB_PATH)/redis"; \
+	    mkdir -p $(DB_PATH)/redis; \
 	fi
 
 create-db-user: up-postgres
