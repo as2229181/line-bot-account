@@ -40,6 +40,5 @@ class TextMessageHandler(LineBotBaseHandler):
                     reply,
                 )
                 return
-            except Exception as e:
+            except Exception:
                 self._api.reply_message(event.reply_token, TextSendMessage(text='操作失敗\n'))
-                print(f'error: {e}', flush=True)

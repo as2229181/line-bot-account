@@ -1,7 +1,7 @@
 from flask import current_app
 
 from consts.linebot_const import TextJobType
-from middlewares.webhook.text_units.account.account_exec_unit_v2 import AccountExecUnit
+from middlewares.webhook.text_units.account.account_exec_unit import AccountExecUnit
 
 
 class TextDispatcher:
@@ -29,17 +29,12 @@ class TextDispatcher:
     @classmethod
     def dispatch(cls, text, user_uuid):
         account_manager = getattr(current_app, 'account_manager', None)
-        print(f'account_manager: {account_manager}')
         if not account_manager:
-            print('no manager')
             return None
         job, action, params = cls._extract_text_with_no_session(text)
-        print(f'job: {job}, action: {action}, params: {params}', flush=True)
         account_session = account_manager.get_session(user_uuid)
-        print(f'account_session exist {account_session}')
         if account_session:
             exec_unit = cls._JOB_DICT[TextJobType.ACCOUNT]
-            print('dispatch with session')
             return exec_unit(user_uuid, text, params, action)
 
         exec_unit = cls._JOB_DICT.get(job, None)

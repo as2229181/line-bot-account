@@ -17,9 +17,7 @@ def entry_point():
         line_bot_service.handler.handle(body, signature)
     except BaseError as e:
         # TODO 更精細的 error catch
-        print(f'LINE SDK error caught: {e}', flush=True)
         return f'lint bot failed: {e}', 200
     except Exception as e:
-        print(f'handler failed: {e}', flush=True)
         return f'handler failed: {e}', 200
     return 'ok', 200
