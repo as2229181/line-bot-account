@@ -1,6 +1,7 @@
 from linebot import LineBotApi, WebhookHandler
 
 from consts.linebot_const import MessageType
+from middlewares.linebot.join_event_handler import JoinEventHandler
 from middlewares.linebot.text_message_handler import TextMessageHandler
 
 
@@ -13,7 +14,10 @@ class LineBotService:
         self._register_handler()
 
     def _register_handler(self):
-        handlers = [TextMessageHandler(self._line_bot_api, self.handler)]
+        handlers = [
+            TextMessageHandler(self._line_bot_api, self.handler),
+            JoinEventHandler(self._line_bot_api, self.handler),
+        ]
         for handler in handlers:
             handler.register()
 
