@@ -9,14 +9,14 @@ class LineBotService:
 
     def __init__(self, access_token, secret):
         self._line_bot_api = LineBotApi(access_token)
-        self._handler = WebhookHandler(secret)
+        self.handler = WebhookHandler(secret)
         self._register_handler()
 
     def _register_handler(self):
-        handlers = [TextMessageHandler(self._line_bot_api, self._handler)]
+        handlers = [TextMessageHandler(self._line_bot_api, self.handler)]
         for handler in handlers:
             handler.register()
 
     def validate(self, body, signature):
-        self._handler.handle(body, signature)
+        self.handler.handle(body, signature)
         return True
