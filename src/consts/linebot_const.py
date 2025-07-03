@@ -2,31 +2,46 @@ from common.const_base import ConstBase
 
 
 class EventType(ConstBase):
-    MESSAGE = "message"
-    UNSEND = "unsend"
-    FLOLLOW = "flollow"
-    UNFOLLOW = "unfollow"
-    JOIN = "join"
-    LEAVE = "leave"
-    MEMBER_JOIN = "member_jon"
-    MEMBER_LEAVE = "member_leave"
-    POSTBACK = "postback"
-    VIDEO = "video"
+    MESSAGE = 'message'
+    UNSEND = 'unsend'
+    FLOLLOW = 'flollow'
+    UNFOLLOW = 'unfollow'
+    JOIN = 'join'
+    LEAVE = 'leave'
+    MEMBER_JOIN = 'member_jon'
+    MEMBER_LEAVE = 'member_leave'
+    POSTBACK = 'postback'
+    VIDEO = 'video'
 
 
 class MessageType(ConstBase):
-    TEXT = "text"
-    IMAGE = "image"
-    STICKER = "sticker"
+    TEXT = 'text'
+    IMAGE = 'image'
+    STICKER = 'sticker'
 
 
-class TextJobType:
-    ACCOUNT = "account"
+class TextJobType(ConstBase):
+    ACCOUNT = 'account'
+
+
+class AccountAction(ConstBase):
+    CANCEL = 'cancel'
 
 
 class PaymentType(ConstBase):
     SPLIT = 1
     ADVANCED = 2
+
+
+class AccountStep(ConstBase):
+    PAYER = 'payer'
+    DEBTOR = 'debtor'
+    AMOUNT = 'amount'
+    DESCRIPTION = 'description'
+    CATEGORY = 'category'
+    TYPE = 'type'
+    DATE = 'date'
+    FINISH = 'finish'
 
 
 class WorkSheetsColumnName(ConstBase):
