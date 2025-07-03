@@ -12,13 +12,22 @@ from services.linebot_service import LineBotService
 
 def _init_service(app):
     """
-    init linebot service
+    init line_bot service
     """
-    linebot_service = LineBotService(
+    line_bot_service = LineBotService(
         access_token=Config.LINEBOT_ACCESS_TOKEN,
         secret=Config.LINEBOT_SECRET,
     )
-    setattr(app, 'linebot_service', linebot_service)
+    setattr(app, 'line_bot_service', line_bot_service)
+
+
+def _init_manager(app):
+    """
+    init manager
+    """
+    from middlewares.manager.account_manager import AccountManager
+
+    setattr(app, 'account_manager', AccountManager())
 
 
 def _init_database(app):
@@ -71,6 +80,7 @@ def create_app(_app):
     CORS(_app, send_wildcard=True)
     Compress(_app)
     _init_service(_app)
+    _init_manager(_app)
     _init_database(_app)
     _init_log()
     _register_controller(_app)

@@ -1,4 +1,4 @@
 class RedisKey:
     @staticmethod
-    def get_account_key(username):
-        return f'account:{username}'
+    def get_account_key(user_uuid):
+        return f'account:{user_uuid}'

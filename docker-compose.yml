@@ -2,7 +2,7 @@ x-app-info: &app-info
   build:
     context: .
     dockerfile: Dockerfile
-  env_file: "${ENV}"
+  env_file: .env
   networks:
     - proxy
   tty: true
