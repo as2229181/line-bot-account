@@ -1,9 +1,14 @@
 import os
 
-from pydantic_settings import BaseSettings
+from dotenv import find_dotenv, load_dotenv
+from pydantic_settings import BaseSettings, SettingsConfigDict
+
+load_dotenv(find_dotenv(".env"))
 
 
 class Settings(BaseSettings):
+    model_config = SettingsConfigDict(env_file='.env', case_sensitive=True)
+
     DEBUG: bool = False
 
     # ---Config--- #
@@ -37,6 +42,7 @@ class Settings(BaseSettings):
     REDIS_HOST: str
     REDIS_PORT: int
     ACCOUNT_DB_NUM: int
+    ACCOUNT_EXPIRED_TIME: int = 60 * 5
 
 
 class Testing(Settings):
