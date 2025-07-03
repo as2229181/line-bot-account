@@ -66,3 +66,7 @@ init-db:
 	docker-compose run --rm app_build flask db init
 	docker-compose run --rm app_build flask db migrate
 	docker-compose run --rm app_build flask db upgrade
+
+export-requirement:
+	@echo "建立 python requirement.txt"
+	@poetry export --format=requirements.txt > requirements.txt

@@ -27,7 +27,7 @@ services:
       - "${PROJECT_PATH}:${APP_ROOT}"
       - "${PROJECT_SECRET_PATH}:${APP_SECRET_PATH}"
     restart: always
-    command: 'python main.py'
+    command: 'gunicorn -c wsgi.py main:app'
     tty: false
     logging:
       options:
