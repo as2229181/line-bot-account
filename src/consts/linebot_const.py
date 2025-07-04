@@ -23,10 +23,18 @@ class MessageType(ConstBase):
 class TextJobType(ConstBase):
     HELP = 'help'
     ACCOUNT = 'account'
+    USER = 'user'
 
 
 class AccountAction(ConstBase):
     CANCEL = 'cancel'
+
+
+class CreateUserStep(ConstBase):
+    USERNAME = 'username'
+    EMAIL = 'email'
+    DESCRIPTION = 'description'
+    FINISH = 'finish'
 
 
 class PaymentType(ConstBase):
