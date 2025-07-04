@@ -24,6 +24,8 @@ class ConstBase:
 
     @classmethod
     def get_values(cls):
+        if cls._VALUES:
+            return cls._VALUES
         for k, v in cls.__dict__.items():
             if k.startswith("_") or type(v) in cls._INVALID_TYPES:
                 continue

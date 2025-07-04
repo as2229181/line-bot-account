@@ -2,10 +2,12 @@ from flask import current_app
 
 from consts.linebot_const import TextJobType
 from middlewares.webhook.text_units.account.account_exec_unit import AccountExecUnit
+from middlewares.webhook.text_units.help.help_exec_unit import HelpExecUnit
 
 
 class TextDispatcher:
     _JOB_DICT = {
+        TextJobType.HELP: HelpExecUnit,
         TextJobType.ACCOUNT: AccountExecUnit,
     }
 

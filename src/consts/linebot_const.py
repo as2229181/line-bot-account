@@ -21,6 +21,7 @@ class MessageType(ConstBase):
 
 
 class TextJobType(ConstBase):
+    HELP = 'help'
     ACCOUNT = 'account'
 
 
