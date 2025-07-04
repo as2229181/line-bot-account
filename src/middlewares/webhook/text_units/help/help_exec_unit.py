@@ -22,5 +22,8 @@ class HelpExecUnit(BaseTextExecUnit):
         return columns
 
     def exec(self):
-        reply = TemplateSendMessage(alt_text='可用指令', template=CarouselTemplate(columns=self._get_carousel_columns()))
+        reply = TemplateSendMessage(
+            alt_text='可用指令',
+            template=CarouselTemplate(columns=self._get_carousel_columns()),
+        )
         return reply
