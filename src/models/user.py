@@ -12,8 +12,10 @@ class User(db.Model):
     uuid = db.Column(UUID(as_uuid=True), unique=True, nullable=False)
 
     username = db.Column(db.String(80), unique=True, nullable=False)
-    description = db.Column(db.Text)
     email = db.Column(db.String(80), unique=True)
+    description = db.Column(db.Text)
+
+    is_active = db.Column(db.Boolean, nullable=False, default=1)
 
     updated_datetime = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
     created_datetime = db.Column(db.DateTime, default=datetime.now)

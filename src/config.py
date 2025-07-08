@@ -42,7 +42,9 @@ class Settings(BaseSettings):
     REDIS_HOST: str
     REDIS_PORT: int
     ACCOUNT_DB_NUM: int
+    USER_DB_NUM: int
     ACCOUNT_EXPIRED_TIME: int = 60 * 5
+    USER_CREATE_EXPIRED_TIME: int = 60 * 5
 
 
 class Testing(Settings):

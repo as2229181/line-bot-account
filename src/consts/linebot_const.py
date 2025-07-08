@@ -23,6 +23,23 @@ class MessageType(ConstBase):
 class TextJobType(ConstBase):
     HELP = 'help'
     ACCOUNT = 'account'
+    USER = 'user'
+
+
+# ---User Const---#
+class UserAction(ConstBase):
+    CREATE = 'create'
+    CANCEL = 'cancel'
+
+
+class CreateUserStep(ConstBase):
+    USERNAME = 'username'
+    EMAIL = 'email'
+    DESCRIPTION = 'description'
+    FINISH = 'finish'
+
+
+# ---Account Const---#
 
 
 class AccountAction(ConstBase):
@@ -43,6 +60,9 @@ class AccountStep(ConstBase):
     TYPE = 'type'
     DATE = 'date'
     FINISH = 'finish'
+
+
+# ---Work Sheet Const---#
 
 
 class WorkSheetsColumnName(ConstBase):
