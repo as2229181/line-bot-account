@@ -1,4 +1,4 @@
-from flask_sqlalchemy import Pagination
+from flask_sqlalchemy.pagination import Pagination
 
 
 class Repo:
