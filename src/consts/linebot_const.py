@@ -26,7 +26,9 @@ class TextJobType(ConstBase):
     USER = 'user'
 
 
-class AccountAction(ConstBase):
+# ---User Const---#
+class UserAction(ConstBase):
+    CREATE = 'create'
     CANCEL = 'cancel'
 
 
@@ -35,6 +37,13 @@ class CreateUserStep(ConstBase):
     EMAIL = 'email'
     DESCRIPTION = 'description'
     FINISH = 'finish'
+
+
+# ---Account Const---#
+
+
+class AccountAction(ConstBase):
+    CANCEL = 'cancel'
 
 
 class PaymentType(ConstBase):
@@ -51,6 +60,9 @@ class AccountStep(ConstBase):
     TYPE = 'type'
     DATE = 'date'
     FINISH = 'finish'
+
+
+# ---Work Sheet Const---#
 
 
 class WorkSheetsColumnName(ConstBase):

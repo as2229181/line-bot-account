@@ -19,18 +19,15 @@ class ConstBase:
 
     _KEY_TO_VALUE_DICT: dict = {}
     _VALUE_TO_KEY_DICT: dict = {}
-    _KEYS: list = []
-    _VALUES: list = []
 
     @classmethod
     def get_values(cls):
-        if cls._VALUES:
-            return cls._VALUES
+        values = list()
         for k, v in cls.__dict__.items():
             if k.startswith("_") or type(v) in cls._INVALID_TYPES:
                 continue
-            cls._VALUES.append(v)
-        return cls._VALUES
+            values.append(v)
+        return values
 
     @classmethod
     def value_to_key(cls, value):
