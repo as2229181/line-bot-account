@@ -15,7 +15,7 @@ class User(db.Model):
     email = db.Column(db.String(80), unique=True)
     description = db.Column(db.Text)
 
-    is_active = db.Column(db.Bool, nullable=False, set_default=1)
+    is_active = db.Column(db.Boolean, nullable=False, default=1)
 
     updated_datetime = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
     created_datetime = db.Column(db.DateTime, default=datetime.now)
