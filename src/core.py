@@ -26,8 +26,10 @@ def _init_manager(app):
     init manager
     """
     from middlewares.manager.account_manager import AccountManager
+    from middlewares.manager.user_manager import UserManager
 
     setattr(app, 'account_manager', AccountManager())
+    setattr(app, 'user_manager', UserManager())
 
 
 def _init_database(app):
