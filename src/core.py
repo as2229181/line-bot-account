@@ -45,10 +45,15 @@ def _init_database(app):
     db.init_app(app)
 
 
-def _init_log():
+def _init_log(app):
     """
     init log system
     """
+    # TODO: add logger to elasticsearch
+    from common.debug_tool import DebugTool
+
+    DebugTool.add_file_logger(tag='line_bot_account')
+    DebugTool.start_logging()
 
 
 def _register_controller(app):
@@ -84,7 +89,7 @@ def create_app(_app):
     _init_service(_app)
     _init_manager(_app)
     _init_database(_app)
-    _init_log()
+    _init_log(_app)
     _register_controller(_app)
     _register_prob(_app)
     return _app
