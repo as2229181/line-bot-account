@@ -18,7 +18,7 @@ class TextDispatcher:
         """
         split text message and transfer to dict
         """
-        raw_text = text.strip()
+        raw_text = text.lower().strip()
         if ' ' in raw_text:
             command_part, params = raw_text.split(' ', 1)
         else:
