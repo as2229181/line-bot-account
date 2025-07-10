@@ -72,7 +72,7 @@ class UserExecUnit(BaseTextExecUnit):
         return reply
 
     def _set_username(self, session):
-        username = self._input_text[0]
+        username = self._input_text
         session.update(
             {
                 'step': CreateUserStep.EMAIL,
@@ -114,7 +114,7 @@ class UserExecUnit(BaseTextExecUnit):
         session.update(
             {
                 'step': CreateUserStep.DESCRIPTION,
-                'username': email,
+                'email': email,
             }
         )
         reply = TemplateSendMessage(
@@ -190,6 +190,7 @@ class UserExecUnit(BaseTextExecUnit):
 
         if current_step == CreateUserStep.FINISH:
             reply = self._finish(create_user_session)
+            self._user_manager.delete_create_session(self._user_uuid)
             return reply
 
         step_handle: Dict[

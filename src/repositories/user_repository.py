@@ -36,6 +36,19 @@ class UserRepository(Repo):
         return user
 
     @staticmethod
+    def get_by_username(username):
+        user = (
+            db.session.query(
+                User,
+            )
+            .filter(
+                User.username == username,
+            )
+            .one_or_none()
+        )
+        return user
+
+    @staticmethod
     def update(
         obj,
         username=None,
