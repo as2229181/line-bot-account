@@ -9,8 +9,10 @@ class PaymentRepository(Repo):
         uuid,
         payer_uuid,
         amount,
+        _type,
         category,
         description,
+        date,
         do_commit=True,
         do_flush=False,
     ):
@@ -18,8 +20,10 @@ class PaymentRepository(Repo):
             uuid=uuid,
             payer_uuid=payer_uuid,
             amount=amount,
+            type=_type,
             category=category,
             description=description,
+            date=date,
         )
         db.session.add(payment)
         if do_commit:
@@ -44,6 +48,7 @@ class PaymentRepository(Repo):
         amount=None,
         category=None,
         description=None,
+        date=None,
         do_commit=True,
         do_flush=False,
     ):
@@ -55,6 +60,8 @@ class PaymentRepository(Repo):
             obj.category = category
         if description is not None:
             obj.description = description
+        if date is not None:
+            obj.date = date
 
         if do_commit:
             db.session.commit()

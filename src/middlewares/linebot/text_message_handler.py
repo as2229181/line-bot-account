@@ -1,6 +1,7 @@
 from flask import current_app
 from linebot.models import MessageEvent, TextMessage, TextSendMessage
 
+from common.debug_tool import DebugTool
 from consts.linebot_const import TextJobType
 from middlewares.linebot.linebot_base_handler import LineBotBaseHandler
 from middlewares.webhook.text_units.account.account_exec_unit import AccountExecUnit
@@ -23,7 +24,7 @@ class TextMessageHandler(LineBotBaseHandler):
         """
         split text message and transfer to dict
         """
-        raw_text = text.lower().strip()
+        raw_text = text.strip()
         if ' ' in raw_text:
             command_part, params = raw_text.split(' ', 1)
         else:
@@ -41,9 +42,11 @@ class TextMessageHandler(LineBotBaseHandler):
         user_manager = getattr(current_app, 'user_manager', None)
 
         if not account_manager or not user_manager:
+            msg = 'redis not connect'
+            DebugTool.debug(msg=msg)
             return None
-        job, action, params = cls._extract_text_with_no_session(text)
 
+        job, action, params = cls._extract_text_with_no_session(text)
         account_session = account_manager.get_session(user_uuid)
         if account_session:
             exec_unit = cls._JOB_DICT[TextJobType.ACCOUNT]
@@ -80,5 +83,6 @@ class TextMessageHandler(LineBotBaseHandler):
                 )
                 return
             except Exception as e:
-                print(e)
+                # debug_message = f'{exec_unit.__name__}'
+                DebugTool.debug(exception=e, verbose=True)
                 self._api.reply_message(event.reply_token, TextSendMessage(text='操作失敗'))

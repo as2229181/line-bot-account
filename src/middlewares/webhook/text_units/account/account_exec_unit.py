@@ -5,7 +5,7 @@ from flask import current_app
 from linebot.models import MessageAction, QuickReply, QuickReplyButton, TextSendMessage
 
 from consts.linebot_const import AccountAction, AccountStep
-from middlewares.google_sheet.google_sheet_operator import GoogleSheetOperator
+from middlewares.accounting import AccountingRecorder
 
 
 class AccountExecUnit:
@@ -17,7 +17,6 @@ class AccountExecUnit:
         self._action = action
         self._params = params
         self._title = self._get_title()
-        self._sheet_operator = GoogleSheetOperator(self._title)
         self._account_manager = getattr(current_app, 'account_manager', None)
 
     @staticmethod
@@ -128,16 +127,23 @@ class AccountExecUnit:
         )
         return reply
 
-    def _handle_finish(self):
+    def _handle_finish(self, session):
         status = self._processed_text[0]
         if status == 'restart':
-            session, reply = self._handle_initial()
-            self._account_manager.set_session(self._user_uuid, session)
+            new_session, reply = self._handle_initial()
+            self._account_manager.set_session(self._user_uuid, new_session)
             return reply
+
         if status == 'confirm':
-            # create_account(session)
-            # sheet_operator = self._sheet_operator
-            # sheet_operator.set_column_names()
+            AccountingRecorder.record(
+                payer_name=session.get('payer'),
+                debtor_name=session.get('debtor'),
+                amount=session.get('amount'),
+                _type=session.get('type'),
+                category=session.get('category'),
+                description=session.get('description'),
+                date=session.get('date'),
+            )
             reply = TextSendMessage(text='記帳完成!')
             return reply
 
@@ -163,7 +169,7 @@ class AccountExecUnit:
 
         current_step = session.get('step')
         if current_step == AccountStep.FINISH:
-            reply = self._handle_finish()
+            reply = self._handle_finish(session)
             # 完成記帳刪除 session
             self._account_manager.delete_session(self._user_uuid)
             return reply
